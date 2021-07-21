@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:Social="http://www.citygml.org/ade/Social" xmlns:bldg="http://www.opengis.net/citygml/building/2.0" xmlns:core="http://www.opengis.net/citygml/2.0" xmlns:gml="http://www.opengis.net/gml" elementFormDefault="qualified" targetNamespace="http://www.citygml.org/ade/Social" version="0.9.3">
+  <import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd"/>
+  <import namespace="http://www.opengis.net/citygml/building/2.0" schemaLocation="http://schemas.opengis.net/citygml/building/2.0/building.xsd"/>
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <element name="AbstractComment" substitutionGroup="gml:_Feature" type="Social:AbstractCommentType"/>
+  <complexType name="AbstractCommentType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractCommentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:AbstractComment"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="AbstractInfo" substitutionGroup="Social:AbstractComment" type="Social:AbstractInfoType"/>
+  <complexType name="AbstractInfoType">
+    <complexContent>
+      <extension base="Social:AbstractCommentType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractInfoPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:AbstractInfo"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="AbstractMetaInfo" substitutionGroup="gml:_Feature" type="Social:AbstractMetaInfoType"/>
+  <complexType name="AbstractMetaInfoType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractMetaInfoPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:AbstractMetaInfo"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="AbstractUser" substitutionGroup="gml:_Feature" type="Social:AbstractUserType"/>
+  <complexType name="AbstractUserType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractUserPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:AbstractUser"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <simpleType name="CityObjectTypeType">
+    <restriction base="string">
+      <enumeration value="Building"/>
+      <enumeration value="Tunnel"/>
+      <enumeration value="Bridge"/>
+      <enumeration value="CityFerniture"/>
+      <enumeration value="WaterBody"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="Comment" substitutionGroup="Social:AbstractComment" type="Social:CommentType"/>
+  <complexType abstract="true" name="CommentType">
+    <complexContent>
+      <extension base="Social:AbstractCommentType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="Comment" type="string"/>
+          <element name="Comments_id" type="integer"/>
+          <element name="Language" type="Social:LanguageTypeType"/>
+          <element name="Time" type="dateTime"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="URL" type="string"/>
+          <element name="UserId" type="integer"/>
+          <element name="Weather" type="Social:WeatherDataPropertyType"/>
+          <element name="LikeNumber" type="integer"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CommentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:Comment"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="CommentAttributes" substitutionGroup="Social:AbstractComment" type="Social:CommentAttributesType"/>
+  <complexType name="CommentAttributesType">
+    <complexContent>
+      <extension base="Social:AbstractCommentType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="ListOfComments_id" type="integer"/>
+          <element name="NumOfComments" type="integer"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="ListOfCommentsLiked" type="integer"/>
+          <element name="NumOfCommentsLiked" type="integer"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CommentAttributesPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:CommentAttributes"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <simpleType name="CommentTypeValueType">
+    <restriction base="string">
+      <enumeration value="Question"/>
+      <enumeration value="Imperative"/>
+      <enumeration value="Informative"/>
+    </restriction>
+  </simpleType>
+  <element name="DateTime" substitutionGroup="gml:_Object" type="Social:DateTimeType"/>
+  <complexType name="DateTimeType">
+    <sequence>
+      <element name="Day" type="integer"/>
+      <element name="Month" type="integer"/>
+      <element name="Year" type="integer"/>
+      <element name="Hour" type="integer"/>
+    </sequence>
+  </complexType>
+  <complexType name="DateTimePropertyType">
+    <sequence>
+      <element ref="Social:DateTime"/>
+    </sequence>
+  </complexType>
+  <simpleType name="EducationTypeValueType">
+    <restriction base="string">
+      <enumeration value="Bachler"/>
+      <enumeration value="Master"/>
+      <enumeration value="PhD"/>
+      <enumeration value="Unknow"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="GenderTypeValueType">
+    <restriction base="string">
+      <enumeration value="Male"/>
+      <enumeration value="Female"/>
+      <enumeration value="Unknown"/>
+      <enumeration value="Other"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="JourneyTypeType">
+    <restriction base="string">
+      <enumeration value="Walking"/>
+      <enumeration value="Bicycle"/>
+      <enumeration value="Driving"/>
+      <enumeration value="Public bus"/>
+      <enumeration value="Subway"/>
+      <enumeration value="Train"/>
+    </restriction>
+  </simpleType>
+  <element name="Keywords" substitutionGroup="gml:_Object" type="Social:KeywordsType"/>
+  <complexType name="KeywordsType">
+    <sequence>
+      <element name="KeywordsNumber" type="integer"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="Name" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="KeywordsPropertyType">
+    <sequence>
+      <element ref="Social:Keywords"/>
+    </sequence>
+  </complexType>
+  <simpleType name="LanguageTypeType">
+    <restriction base="string">
+      <enumeration value="English"/>
+      <enumeration value="French"/>
+      <enumeration value="Germman"/>
+      <enumeration value="Turkish"/>
+      <enumeration value="Spanish"/>
+    </restriction>
+  </simpleType>
+  <element name="Location" substitutionGroup="gml:_Object" type="Social:LocationType"/>
+  <complexType name="LocationType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="Name" type="string"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="BroughName" type="string"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="PostalCode" type="string"/>
+      <element name="lat" type="integer"/>
+      <element name="lon" type="integer"/>
+      <element name="IsExist" type="boolean"/>
+    </sequence>
+  </complexType>
+  <complexType name="LocationPropertyType">
+    <sequence>
+      <element ref="Social:Location"/>
+    </sequence>
+  </complexType>
+  <element name="MetaInformation" substitutionGroup="Social:AbstractMetaInfo" type="Social:MetaInformationType"/>
+  <complexType name="MetaInformationType">
+    <complexContent>
+      <extension base="Social:AbstractMetaInfoType">
+        <sequence>
+          <element name="Sentiment" type="Social:SentimentPropertyType"/>
+          <element name="Topic" type="Social:topicPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="Keywords" type="Social:KeywordsPropertyType"/>
+          <element name="RelatedTo" type="Social:CityObjectTypeType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="LocationsMentioned" type="Social:LocationPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MetaInformationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:MetaInformation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <simpleType name="OccupationTypeType">
+    <restriction base="string">
+      <enumeration value="Art, Audio/Video technology and Communications"/>
+      <enumeration value="Education and training"/>
+      <enumeration value="Government and public administration"/>
+      <enumeration value="Hospitality and tourism"/>
+      <enumeration value="Information technology"/>
+      <enumeration value="Manufacturing"/>
+      <enumeration value="Science, Technology, Engineering and Mathematics"/>
+      <enumeration value="Architecture and Costruction"/>
+      <enumeration value="Business management and administration"/>
+      <enumeration value="Finance"/>
+      <enumeration value="Health Service"/>
+      <enumeration value="Human Services"/>
+      <enumeration value="Law, Public Safety, Corrections and Security"/>
+      <enumeration value="Marketing, Sales and Services"/>
+      <enumeration value="Transportation, Distribution  and Logistics"/>
+    </restriction>
+  </simpleType>
+  <element name="Sentiment" substitutionGroup="gml:_Object" type="Social:SentimentType"/>
+  <complexType name="SentimentType">
+    <sequence>
+      <element name="Percentage" type="integer"/>
+      <element name="Type" type="Social:SentimentTypeValueType"/>
+    </sequence>
+  </complexType>
+  <complexType name="SentimentPropertyType">
+    <sequence>
+      <element ref="Social:Sentiment"/>
+    </sequence>
+  </complexType>
+  <simpleType name="SentimentTypeValueType">
+    <restriction base="string">
+      <enumeration value="Positive"/>
+      <enumeration value="Nagative"/>
+      <enumeration value="Neutural"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TopicTypeValueType">
+    <restriction base="string">
+      <enumeration value="Usage"/>
+      <enumeration value="Constraction"/>
+      <enumeration value="Malfunctioning"/>
+    </restriction>
+  </simpleType>
+  <element name="User" substitutionGroup="Social:AbstractUser" type="Social:UserType"/>
+  <complexType name="UserType">
+    <complexContent>
+      <extension base="Social:AbstractUserType">
+        <sequence>
+          <element name="age" type="integer"/>
+          <element name="Education" type="Social:EducationTypeValueType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="FirstName" type="string"/>
+          <element name="Gender" type="Social:GenderTypeValueType"/>
+          <element name="HaveCare" type="boolean"/>
+          <element name="HaveChild" type="boolean"/>
+          <element name="HavePet" type="boolean"/>
+          <element name="HomeAddress" type="Social:LocationPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="LastName" type="string"/>
+          <element name="Occupantion" type="Social:occupationPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="UserId" type="integer"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="UserPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:User"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="WeatherData" substitutionGroup="gml:_Object" type="Social:WeatherDataType"/>
+  <complexType name="WeatherDataType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="Value" type="string"/>
+      <element name="weatherDataType" type="Social:WeatherDataTypeValueType"/>
+    </sequence>
+  </complexType>
+  <complexType name="WeatherDataPropertyType">
+    <sequence>
+      <element ref="Social:WeatherData"/>
+    </sequence>
+  </complexType>
+  <simpleType name="WeatherDataTypeValueType">
+    <restriction base="string">
+      <enumeration value="Stormy"/>
+      <enumeration value="Cloudy"/>
+      <enumeration value="Rainy"/>
+      <enumeration value="Sunny"/>
+      <enumeration value="Snow"/>
+      <enumeration value="Foggy"/>
+      <enumeration value="Hot"/>
+      <enumeration value="Cold"/>
+    </restriction>
+  </simpleType>
+  <element name="_CityObject" substitutionGroup="core:_CityObject" type="Social:_CityObjectType"/>
+  <complexType name="_CityObjectType">
+    <complexContent>
+      <extension base="core:AbstractCityObjectType">
+        <sequence>
+          <element name="IsPublic" type="boolean"/>
+          <element name="LocationInfo" type="Social:LocationPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="Name" type="string"/>
+          <element name="NumberOfComments" type="integer"/>
+          <element name="NumberOfUserOpinion" type="integer"/>
+          <element name="TotalSentiment" type="Social:SentimentPropertyType"/>
+          <element name="Type" type="Social:WeatherDataTypeValueType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="Comment" type="Social:AbstractCommentPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="_CityObjectPropertyType">
+    <sequence minOccurs="0">
+      <element ref="Social:_CityObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+  </complexType>
+  <element name="occupation" substitutionGroup="gml:_Object" type="Social:occupationType"/>
+  <complexType name="occupationType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="Name" type="string"/>
+      <element name="Type" type="Social:OccupationTypeType"/>
+      <element name="Address" type="Social:LocationPropertyType"/>
+      <element name="JourneyTypeToWork" type="Social:JourneyTypeType"/>
+    </sequence>
+  </complexType>
+  <complexType name="occupationPropertyType">
+    <sequence>
+      <element ref="Social:occupation"/>
+    </sequence>
+  </complexType>
+  <element name="topic" substitutionGroup="gml:_Object" type="Social:topicType"/>
+  <complexType name="topicType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="Name" type="string"/>
+      <element name="Type" type="Social:TopicTypeValueType"/>
+    </sequence>
+  </complexType>
+  <complexType name="topicPropertyType">
+    <sequence>
+      <element ref="Social:topic"/>
+    </sequence>
+  </complexType>
+</schema>
